@@ -1,0 +1,8 @@
+    zn "%SYS"
+    // Do ##class(Security.Users).UnExpireUserPasswords("*")
+    Set db=##Class(SYS.Database).%OpenId($e(##class(Config.Databases).DatabaseByName("IRISLIB"),3,*))
+    Set db.ReadOnly=0
+    Set status=db.%Save()
+    do $System.OBJ.DeletePackage("%DeepSee.Report")
+    Set db.ReadOnly=1
+    Set status=db.%Save()
